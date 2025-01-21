@@ -12,8 +12,9 @@ locals {
 
   console_rule = [{
     port                  = 443,
-    protocol              = "TCP"
+    protocol              = var.is_enabled_https_public ? "TLS" : "TCP"
     health_check_protocol = "TCP"
+    certificate_arn       = var.is_enabled_https_public ? aws_acm_certificate.cert[0].arn : ""
   }]
   public_rule              = concat(var.public_rule, var.is_enabled_https_public ? local.console_rule : [])
   private_rule             = concat(var.private_rule, local.console_rule)

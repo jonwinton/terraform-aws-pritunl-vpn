@@ -78,6 +78,7 @@ variable "public_rule" {
     protocol              = string
     health_check_port     = number
     health_check_protocol = string
+    certificate_arn       = string
   }))
   default = [
     {
@@ -85,6 +86,7 @@ variable "public_rule" {
       protocol              = "UDP"
       health_check_port     = 443
       health_check_protocol = "TCP"
+      certificate_arn       = ""
     }
   ]
 }

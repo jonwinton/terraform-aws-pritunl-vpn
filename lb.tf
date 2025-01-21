@@ -29,6 +29,7 @@ resource "aws_lb_listener" "public" {
   load_balancer_arn = aws_lb.public.arn
   port              = local.public_rule[count.index].port
   protocol          = local.public_rule[count.index].protocol
+  certificate_arn   = local.public_rule[count.index].certificate_arn
 
   default_action {
     type             = "forward"
